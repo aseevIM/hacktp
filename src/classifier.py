@@ -1,5 +1,9 @@
+import os.path
+import json
+
 class Classifier:
-    # Принимаю в качестве аргумента все письма(нужно создать под них класс), файл правил, вес темы и текста письма
+    # !!!!! Создать класс писем
+    # Принимаю в качестве аргумента все письма, файл правил, вес темы и текста письма
     def __init__(self, emails, rules_path,  sub_points = 3, text_points = 1):
         self.emails = emails
         self.rules_to_categorize = self.get_rules_to_categorize(rules_path)
@@ -44,6 +48,20 @@ class Classifier:
     def get_email_to_category(self):
         return self.result
 
-    # Получает правила для распределения писем на категории (думаю сделать через json файл)
+    # Получает правила для распределения писем на категории
     def get_rules_to_categorize(self, path):
-        pass
+        # !!!! Вывод на логгер и оболочку при ошибках
+
+        # Проверка на наличие файла
+        if not os.path.exists(path):
+            print(f"Файл по пути: '{path}' не существует")
+            return {}
+        # Проверка расширения файла
+        if os.path.splitext(path)[1] != ".json":
+            print(f"Файл по пути: '{path}' не является json файлом")
+            return {}
+
+        with open(path) as file:
+            return json.load(file)
+
+
