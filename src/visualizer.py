@@ -1,10 +1,8 @@
 import matplotlib.pyplot as plt
 
 class Visualizer:
-    def __init__(self, classified_data, output_dir, prefer_table):
+    def __init__(self, classified_data):
         self.analytics = self.get_analytics(classified_data)
-        self.output_dir = output_dir
-        self.prefer_table = prefer_table
 
     # Переводит полученные данные в список категорий и количество каждой: Категория -> Кол-во писем
     def get_analytics(self, classified_data):
@@ -16,22 +14,19 @@ class Visualizer:
 
         return analytics
 
-    # озвращает диаграмму, выбранную пользователем
-    def get_schedule(self):
+    # Возвращает диаграмму, выбранную пользователем
+    def get_schedule(self, prefer_table):
         categories = list(self.analytics.keys())
         values = list(self.analytics.values())
 
-        if self.prefer_table == "bar":
+        if prefer_table == "bar":
             table = self.build_bar(categories, values)
-        elif self.prefer_table == "pie":
+        elif prefer_table == "pie":
             table = self.build_pie(categories, values)
         else:
             # !!!! Добавить логгер
             print(f"Выбран неизвестный тип диаграммы: '{self.prefer_table}'. Необходимо выбрать bar или pie")
             return None
-
-        # Для проверки
-        plt.show()
 
         return table
 
@@ -59,6 +54,15 @@ class Visualizer:
         # Возвращаем фигуру чтобы можно было сохранить в pdf/png
         return fig
 
+    def show_table(self, prefer_table):
+        table = self.get_schedule(prefer_table)
+        plt.show()
+
+    def save_to_pdf(self, output_dir, prefer_table):
+        table = self.get_schedule(prefer_table)
+        output_path = output_dir
+        # доделать
+
 
 # Тестовый набор для проверки работоспособности
 # !!!! Удалить
@@ -73,11 +77,13 @@ if __name__ == "__main__":
     }
 
 
-    viz = Visualizer(test_data, "logs", "bar")
-    viz.get_schedule()
+    viz = Visualizer(test_data)
+    viz.show_table("bar")
+    viz.show_table("pie")
 
-    # Работает как ber, так и pie
+    # Работает как bar, так и pie
     # Можете проверить у себя
+    # Я потом перенесу в тесты
 
 
 
