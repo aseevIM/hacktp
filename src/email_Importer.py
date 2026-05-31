@@ -6,7 +6,7 @@ class EmailImporter:
     def read_all_emails(self):
         pass
 
-    #Прочитать одно письмо, представить в виде экземпляра класса Email, вспомогательный
+    # Прочитать одно письмо, представить в виде экземпляра класса Email, вспомогательный
     def read_email(self):
         pass
 
