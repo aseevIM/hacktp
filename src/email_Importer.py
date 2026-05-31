@@ -1,5 +1,5 @@
 from email_class import Email
-
+from pathlib import Path
 
 class EmailImporter:
     def __init__(self, input_dir):
@@ -7,10 +7,17 @@ class EmailImporter:
         # важной для классификации информации
         # !!!! Обсудить
         self.subject_v = {"тема", "subject", "tema"}
+        self.input_dir = input_dir
 
     # Читает все письма, возвращает список экземпляров Email
     def read_all_emails(self):
-        pass
+        emails = []
+
+        for file_path in Path(self.input_dir).iterdir():
+            email = self.read_email(file_path)
+            emails.append(email)
+
+        # !!! Добавить обработку ошибок, битых файлов и тд
 
     #Прочитать одно письмо, вернуть в виде экземпляра класса Email, вспомогательный
     def read_email(self, file_path):
