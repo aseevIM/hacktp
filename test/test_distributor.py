@@ -52,6 +52,8 @@ def test_classify_all():
     # Копируем письма, которые будут распределяться и распределяем
     copy_emails()
     distributor.distribute_all(classified_data)
+    distributor.distribute_remaining_files(".\\test\\test_data\\test_emails_for_distributor", "broken")
+
 
     # Сверяем правильное распределение с получившимся
     output_data = ".\\test\\test_data\\test_output"
