@@ -59,9 +59,9 @@ def change_arguments(arguments:Config):
     print("1 - Оставить значения по умолчанию")
     print("2 - Изменить параметры через консоль")
     print("3 - Изменить параметры через графический интерфейс")
-    print("Остальное - Выход из программы")
+    print("Остальное - Выход из программы\n")
 
-    prefer = input().strip()
+    prefer = input("Ввод: ").strip()
     if prefer == "1":
         return
     elif prefer == "2":

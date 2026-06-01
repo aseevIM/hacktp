@@ -1,4 +1,4 @@
-import os.path
+from pathlib import Path
 import json
 from pathlib import Path
 
@@ -66,12 +66,12 @@ class Classifier:
     def get_rules_to_categorize(self, path):
 
         # Доп проверка на наличие файла
-        if not os.path.exists(path):
+        if not Path(path).exists():
             logger.error(f"Файл Правил не существует по указанному пути: '{path}'")
             raise FileNotFoundError(f"Файл правил не найден: '{path}'")
 
         # Проверка расширения файла
-        if os.path.splitext(path)[1] != ".json":
+        if Path(path).suffix != ".json":
             logger.error(f"Файл по пути: '{path}' не является json файлом")
             raise ValueError(f"Файл по пути: '{path}' не является json файлом")
 

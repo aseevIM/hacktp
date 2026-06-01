@@ -24,7 +24,7 @@ class MainWindow(ctk.CTk):
         self.inbox_edit  = self._path_row(paths_frame, "Папка с письмами:", str(config.inbox_path))
         self.logs_edit   = self._path_row(paths_frame, "Папка для логов:", str(config.logs_output_path))
         self.report_edit = self._path_row(paths_frame, "Папка для отчётов:", str(config.report_path))
-        self.output_edit = self._path_row(paths_frame, "Папка для писем:", str(config.classified_emails_path))
+        self.output_edit = self._path_row(paths_frame, "Папка для распределенных писем:", str(config.classified_emails_path))
 
 
 
