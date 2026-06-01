@@ -26,11 +26,13 @@ class Classifier:
 
     # Классифицирует все предоставленные письма, сохраняет в поле result класса
     def classify_all(self):
+        print(self.rules_to_categorize)
         logger.info("Начата классификация писем")
         for email in self.emails:
             category = self.classify(email)
             self.result[email.path] = category
         logger.info("Классификация писем завершена")
+
 
     # Классифицирует конкретное письмо, вспомогательный
     def classify(self, email):
@@ -73,7 +75,7 @@ class Classifier:
             logger.error(f"Файл по пути: '{path}' не является json файлом")
             raise ValueError(f"Файл по пути: '{path}' не является json файлом")
 
-        with open(path) as file:
+        with open(path, encoding='utf-8') as file:
             logger.info(f"Загрузка правил из файла: '{path}'")
             try:
                 rules = json.load(file)
