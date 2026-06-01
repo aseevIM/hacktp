@@ -26,7 +26,7 @@ class EmailImporter:
                 email = self.read_email(file_path)
                 emails.append(email)
             except Exception as e:
-                logger.exception(f"не удалось прочесть файл: '{file_path}', ,был пропущен")
+                logger.exception(f"не удалось прочесть файл: '{file_path}', был пропущен")
 
         logger.info("Письма обработаны")
         return emails
@@ -38,6 +38,8 @@ class EmailImporter:
         text = []
         is_main_text = False
 
+        if file_path.suffix != '.txt':
+            raise ValueError("файл должен быть '.txt'")
 
         with open(file_path, encoding="utf-8") as file:
             lines = file.read().splitlines()
