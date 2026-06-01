@@ -3,9 +3,9 @@ import logging
 # Создает и настраивает logger, (для main)
 
 # !!!! разобраться со стандартной out директорией
-def make_logger(output_dir="out"):
+def make_logger(output_dir):
     logger = logging.getLogger("processor")
-
+    output_dir.mkdir(parents=True, exist_ok=True)
     # Доступны все уровни
     logger.setLevel(logging.DEBUG)
 

@@ -1,11 +1,11 @@
-from email_class import Email
+from .email_class import Email
 from pathlib import Path
 
 import logging
 logger = logging.getLogger("processor")
 
 class EmailImporter:
-    def __init__(self, input_dir = "inbox\\inbox"):
+    def __init__(self, input_dir):
         # возможные варианты записи конкретных полей, беру только поле subject, остальные не несут никакой
         # важной для классификации информации
 
