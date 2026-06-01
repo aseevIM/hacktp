@@ -56,7 +56,7 @@
 # | Девятовский Николай Иванович | Fullstack | все классы + помощь с main и как следствие создание нового + создание расширений + работа над custom tkinter |
 # | Овчинников Константин Павлович | QA Engineer | тесты + проработка каждого из классов |
 # | Подковыров Тимофей Игоревич|Slide Maker + Backend| работа над презентацией + создание custom tkinter и работа над ним |
-# | Тележникова Светлана Александрова | Main Slide Maker | Проработка дизайна презентации |
+# | Тележникова Светлана Александрова | Main Slide Maker | Проработка дизайна презентации и выступление |
 # Tech Lead - @xdeuropopka, Fullstack - @DieDieMyDarl1ng, QA Engineer - @Didhehe, Backend - @BisterMeen, Main Slide Maker - @svet_aaai
 
 
