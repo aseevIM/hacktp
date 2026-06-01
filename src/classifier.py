@@ -1,10 +1,22 @@
 import os.path
 import json
+from pathlib import Path
+
+# подгружаем логгер
+import logging
+logger = logging.getLogger("processor")
 
 class Classifier:
     # Принимаю в качестве аргумента все письма, файл правил, вес темы и текста письма
-    def __init__(self, emails, rules_path,  sub_points = 3, text_points = 1):
+    def __init__(self, emails, rules_path,  sub_points, text_points):
+        # Дополнительная проверка списка
+        if type(emails) != list:
+            logger.error(f"emails должен быть списком, получен {type(emails)}")
+            raise TypeError(f"emails должен быть списком, получен {type(emails)}")
+        if len(emails) == 0:
+            logger.warning("Получен пустой список писем")
         self.emails = emails
+
         self.rules_to_categorize = self.get_rules_to_categorize(rules_path)
 
         self.sub_points = sub_points
@@ -14,10 +26,11 @@ class Classifier:
 
     # Классифицирует все предоставленные письма, сохраняет в поле result класса
     def classify_all(self):
+        logger.info("Начата классификация писем")
         for email in self.emails:
             category = self.classify(email)
             self.result[email.path] = category
-
+        logger.info("Классификация писем завершена")
 
     # Классифицирует конкретное письмо, вспомогательный
     def classify(self, email):
@@ -49,18 +62,26 @@ class Classifier:
 
     # Получает правила для распределения писем на категории
     def get_rules_to_categorize(self, path):
-        # !!!! Вывод на логгер и оболочку при ошибках
 
-        # Проверка на наличие файла
+        # Доп проверка на наличие файла
         if not os.path.exists(path):
-            print(f"Файл по пути: '{path}' не существует")
-            return {}
+            logger.error(f"Файл Правил не существует по указанному пути: '{path}'")
+            raise FileNotFoundError(f"Файл правил не найден: '{path}'")
+
         # Проверка расширения файла
         if os.path.splitext(path)[1] != ".json":
-            print(f"Файл по пути: '{path}' не является json файлом")
-            return {}
+            logger.error(f"Файл по пути: '{path}' не является json файлом")
+            raise ValueError(f"Файл по пути: '{path}' не является json файлом")
 
         with open(path) as file:
-            return json.load(file)
+            logger.info(f"Загрузка правил из файла: '{path}'")
+            try:
+                rules = json.load(file)
+                logger.info(f"Правила загружены")
+                return rules
+            except json.JSONDecodeError as e:
+                logger.info(f"Ошибка при чтении файла {e}")
+                raise ValueError(f"Ошибка при чтении файла")
+
 
 
