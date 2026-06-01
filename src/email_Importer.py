@@ -51,7 +51,8 @@ class EmailImporter:
             if not is_main_text:
                 # Если есть индикатор темы, считываем eё
                 if any(x for x in self.subject_v if x in line):
-                    subject = line.split(":", 1)[1]
+                    # берём категорию, которая выше в списке
+                    subject = line.split(":", 1)[1].strip()
                     is_main_text = True
                     continue
 

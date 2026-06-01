@@ -92,7 +92,7 @@ class MainWindow(ctk.CTk):
             text_points=text,
             chart_type=self.chart_combo.get(),
         )
-        self.destroy()  
+        self.destroy()
 
 
 def run_gui(config):

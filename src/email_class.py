@@ -4,3 +4,9 @@ class Email:
         self.path = path
         self.subject = subject
         self.text = text
+
+    def __eq__(self, other):
+        if self.file_name == other.file_name and self.path == other.path and self.subject == other.subject and self.text == other.text:
+            return True
+        else:
+            return False
