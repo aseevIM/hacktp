@@ -1,8 +1,10 @@
 from email_class import Email
 from pathlib import Path
 
+STANDART_PATH = "......."
+
 class EmailImporter:
-    def __init__(self, input_dir):
+    def __init__(self, input_dir = STANDART_PATH):
         # возможные варианты записи конкретных полей, беру только поле subject, остальные не несут никакой
         # важной для классификации информации
         # !!!! Обсудить
@@ -17,6 +19,7 @@ class EmailImporter:
             email = self.read_email(file_path)
             emails.append(email)
 
+        return emails
         # !!! Добавить обработку ошибок, битых файлов и тд
 
     #Прочитать одно письмо, вернуть в виде экземпляра класса Email, вспомогательный
@@ -47,3 +50,18 @@ class EmailImporter:
         email = Email(file_path.name, file_path, subject, text)
         return email
 
+
+
+# ТЕСТ
+if __name__ == "__main__":
+    reader = EmailImporter()
+    emails = reader.read_all_emails()
+
+    print(f"Всего прочитано писем: {len(emails)}")
+    print("-" * 40)
+
+    for email in emails:
+        print(f"Файл   : {email.file_name}")
+        print(f"Тема   : {email.subject}")
+        print(f"Текст  : {email.text}...")
+        print("")

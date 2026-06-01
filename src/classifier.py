@@ -2,7 +2,6 @@ import os.path
 import json
 
 class Classifier:
-    # !!!!! Создать класс писем
     # Принимаю в качестве аргумента все письма, файл правил, вес темы и текста письма
     def __init__(self, emails, rules_path,  sub_points = 3, text_points = 1):
         self.emails = emails
