@@ -47,7 +47,7 @@ class Visualizer:
     # Строит круговую диаграмму
     def build_pie(self, categories, values):
         fig, axes = plt.subplots()
-        axes.pie(x=values, labels=categories)
+        axes.pie(values, labels=categories)
 
         # настройка заголовка диаграммы
         axes.set_title("Количество писем")
