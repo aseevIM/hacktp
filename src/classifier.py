@@ -79,6 +79,7 @@ class Classifier:
                 rules = json.load(file)
                 logger.info(f"Правила загружены")
                 return rules
+            # файл не работает
             except json.JSONDecodeError as e:
                 logger.info(f"Ошибка при чтении файла {e}")
                 raise ValueError(f"Ошибка при чтении файла")
