@@ -5,6 +5,7 @@ from src.distributor import Distributor
 from src.email_Importer import EmailImporter
 from src.logger import make_logger
 from src.visualizer import Visualizer
+from src.app import run_gui
 
 
 # аргументы
@@ -134,7 +135,7 @@ def term_change(arguments:Config):
         print(f"Ошибка: {e}, установлено значение по умолчанию")
 
 def gui_change(arguments: Config):
-    pass
+    run_gui(arguments)
 
 def main():
     arguments = Config()
@@ -157,6 +158,7 @@ def main():
 
     distributor = Distributor(arguments.classified_emails_path)
     distributor.distribute_all(email_to_category)
+    distributor.distribute_remaining_files(arguments.inbox_path, "unsuitable")
 
 
 

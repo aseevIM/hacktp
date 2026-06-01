@@ -15,7 +15,7 @@ class Distributor:
             logger.warning("Передан пустой словарь")
             return
 
-        categories = classified_data.values()
+        categories = list(set((classified_data.values())))
 
         self.make_dirs(categories)
 
@@ -61,3 +61,20 @@ class Distributor:
             except Exception as e:
                 logger.exception(f"Не удалось создать папку '{category}': {e}")
                 raise
+
+    # отправляет оставшиеся во входной дирректори необработанные файлы
+    def distribute_remaining_files(self, input_dir, category_name):
+        self.make_dirs([category_name])
+
+
+        logger.info(f"Переброс оставшихся файлов в папку {category_name}")
+        for file_path in Path(input_dir).iterdir():
+            # для пропуска директорий
+            if not file_path.is_file():
+                logger.warning(f"Пропущена директория: '{file_path}'")
+                continue
+
+            try:
+                self.distribute(file_path, category_name)
+            except Exception as e:
+                logger.warning(str(e))
