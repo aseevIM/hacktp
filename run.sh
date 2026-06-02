@@ -8,7 +8,7 @@ export PYTHONUTF8=1
 
 pip install -r requirements.txt
 
-pythonw main.py
+python main.py
 
 if [ $? -eq 0 ]; then
     echo "Все работает"
