@@ -56,6 +56,7 @@ class Classifier:
             return "other"
 
         most_likely_category = [x for x, val in points.items() if val == highest_score]
+        logger.info(f"Классификация письма {email.path} завершена, присвоена категория {most_likely_category[0]}")
         return most_likely_category[0]
 
     # Возвращает результат в формате: Путь -> Категори
