@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "=== Обработка корпоративной почты ==="
+echo "Обработка корпоративной почты"
 
 [ ! -d "data/inbox" ] && echo "ОШИБКА: data/inbox не найдена" && exit 1
 [ ! -f "data/rules/rules.json" ] && echo "ОШИБКА: rules.json не найден" && exit 1
