@@ -1,6 +1,7 @@
 #!/bin/bash
 
 echo "Обработка корпоративной почты"
+export PYTHONUTF8=1
 
 [ ! -d "data/inbox" ] && echo "ОШИБКА: data/inbox не найдена" && exit 1
 [ ! -f "data/rules/rules.json" ] && echo "ОШИБКА: rules.json не найден" && exit 1
