@@ -6,6 +6,8 @@ export PYTHONUTF8=1
 [ ! -d "data/inbox" ] && echo "ОШИБКА: data/inbox не найдена" && exit 1
 [ ! -f "data/rules/rules.json" ] && echo "ОШИБКА: rules.json не найден" && exit 1
 
+pip install -r requirements.txt
+
 python3 main.py
 
 if [ $? -eq 0 ]; then
